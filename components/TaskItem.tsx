@@ -2,6 +2,7 @@
 
 import { Task } from "@/types/task";
 import { getPriorityColor, getCategoryColor, formatDueDate } from "@/utils/helpers";
+import { Calendar, Check, Trash, Undo } from "lucide-react";
 
 interface TaskItemProps {
 	task: Task;
@@ -45,14 +46,7 @@ export default function TaskItem({ task, onToggleStatus, onDelete }: TaskItemPro
 
 					{task.dueDate && (
 						<p className="text-sm text-slate-500 dark:text-slate-400 mt-2 flex items-center gap-1">
-							<svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-								<path
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									strokeWidth={2}
-									d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-								/>
-							</svg>
+							<Calendar className="w-4 h-4" />
 							Due: {formatDueDate(task.dueDate)}
 						</p>
 					)}
@@ -61,16 +55,27 @@ export default function TaskItem({ task, onToggleStatus, onDelete }: TaskItemPro
 				<div className="flex gap-2 flex-shrink-0">
 					<button
 						onClick={() => onToggleStatus(task.id)}
-						className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg ${
+						className={`flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg ${
 							task.status === "Pending"
 								? "bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white"
 								: "bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white"
 						}`}>
-						{task.status === "Pending" ? "Complete" : "Undo"}
+						{task.status === "Pending" ? (
+							<>
+								<Check className="w-4 h-4 mr-2" />
+								Complete
+							</>
+						) : (
+							<>
+								<Undo className="w-4 h-4 mr-2" />
+								Undo
+							</>
+						)}
 					</button>
 					<button
 						onClick={() => onDelete(task.id)}
-						className="px-4 py-2 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white rounded-lg text-sm font-medium transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg">
+						className="flex items-center justify-center px-4 py-2 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white rounded-lg text-sm font-medium transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg">
+						<Trash className="w-4 h-4 mr-2" />
 						Delete
 					</button>
 				</div>

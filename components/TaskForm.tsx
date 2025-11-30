@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { TaskFormData, TaskPriority, TaskCategory } from "@/types/task";
+import { Plus } from "lucide-react";
 
 interface TaskFormProps {
 	onSubmit: (taskData: TaskFormData) => void;
@@ -90,7 +91,8 @@ export default function TaskForm({ onSubmit }: TaskFormProps) {
 				<div className="flex items-end">
 					<button
 						type="submit"
-						className="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+						className="w-full flex items-center justify-center px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+						<Plus className="w-5 h-5 mr-2" />
 						Add Task
 					</button>
 				</div>

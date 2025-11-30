@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import { Task, TaskFilters, TaskFormData } from "@/types/task";
 import { useLocalStorage } from "./useLocalStorage";
 import { filterTasks, sortTasks } from "@/utils/helpers";
+import { toast } from "react-hot-toast";
 
 export const useTasks = () => {
 	const { tasks, setTasks, isInitialized } = useLocalStorage();
@@ -33,6 +34,7 @@ export const useTasks = () => {
 			};
 
 			setTasks((prevTasks) => [...prevTasks, newTask]);
+			toast.success("Task added successfully!");
 			return newTask;
 		},
 		[setTasks]
@@ -67,6 +69,7 @@ export const useTasks = () => {
 	const deleteTask = useCallback(
 		(id: string) => {
 			setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
+			toast.success("Task deleted successfully!");
 		},
 		[setTasks]
 	);
@@ -103,3 +106,4 @@ export const useTasks = () => {
 		isInitialized,
 	};
 };
+

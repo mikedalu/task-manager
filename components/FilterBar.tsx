@@ -1,6 +1,7 @@
 "use client";
 
 import { TaskFilters, TaskStatus, TaskPriority, TaskCategory } from "@/types/task";
+import { ListFilter, Signal, Tag, ArrowDownUp, Search } from "lucide-react";
 
 interface FilterBarProps {
 	filters: TaskFilters;
@@ -20,7 +21,10 @@ export default function FilterBar({ filters, onFiltersChange }: FilterBarProps) 
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
 				{/* Status Filter */}
 				<div>
-					<label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Status</label>
+					<label className="flex items-center text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+						<ListFilter className="w-4 h-4 mr-2" />
+						Status
+					</label>
 					<select
 						value={filters.status}
 						onChange={(e) => handleFilterChange("status", e.target.value as TaskStatus | "All")}
@@ -33,7 +37,10 @@ export default function FilterBar({ filters, onFiltersChange }: FilterBarProps) 
 
 				{/* Priority Filter */}
 				<div>
-					<label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Priority</label>
+					<label className="flex items-center text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+						<Signal className="w-4 h-4 mr-2" />
+						Priority
+					</label>
 					<select
 						value={filters.priority}
 						onChange={(e) => handleFilterChange("priority", e.target.value as TaskPriority | "All")}
@@ -47,7 +54,10 @@ export default function FilterBar({ filters, onFiltersChange }: FilterBarProps) 
 
 				{/* Category Filter */}
 				<div>
-					<label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Category</label>
+					<label className="flex items-center text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+						<Tag className="w-4 h-4 mr-2" />
+						Category
+					</label>
 					<select
 						value={filters.category}
 						onChange={(e) => handleFilterChange("category", e.target.value as TaskCategory | "All")}
@@ -62,7 +72,10 @@ export default function FilterBar({ filters, onFiltersChange }: FilterBarProps) 
 
 				{/* Sort By */}
 				<div>
-					<label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Sort By</label>
+					<label className="flex items-center text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+						<ArrowDownUp className="w-4 h-4 mr-2" />
+						Sort By
+					</label>
 					<select
 						value={filters.sortBy}
 						onChange={(e) => handleFilterChange("sortBy", e.target.value)}
@@ -75,7 +88,10 @@ export default function FilterBar({ filters, onFiltersChange }: FilterBarProps) 
 
 				{/* Search */}
 				<div className="lg:col-span-2">
-					<label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Search Tasks</label>
+					<label className="flex items-center text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+						<Search className="w-4 h-4 mr-2" />
+						Search Tasks
+					</label>
 					<input
 						type="text"
 						placeholder="Search tasks..."
