@@ -14,9 +14,7 @@ export default function Home() {
 			<div className="max-w-6xl mx-auto">
 				{/* Header */}
 				<div className="text-center mb-12">
-					<h1 className="text-5xl font-bold text-slate-900 dark:text-white mb-2 tracking-tight">
-						Enhanced Task Manager
-					</h1>
+					<h1 className="text-5xl font-bold text-slate-900 dark:text-white mb-2 tracking-tight">Simple Task Manager</h1>
 					<p className="text-slate-600 dark:text-slate-400 text-lg">
 						Organize your tasks with priority levels and categories
 					</p>
