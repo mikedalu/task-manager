@@ -25,4 +25,5 @@ export interface TaskFormData {
 	dueDate?: string;
 	priority: TaskPriority;
 	category: TaskCategory;
+	status?: TaskStatus;
 }

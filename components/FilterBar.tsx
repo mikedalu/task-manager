@@ -18,7 +18,7 @@ export default function FilterBar({ filters, onFiltersChange }: FilterBarProps) 
 
 	return (
 		<div className="mb-6 p-6 bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-xl border border-slate-200 dark:border-slate-700">
-			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
+			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
 				{/* Status Filter */}
 				<div>
 					<label className="flex items-center text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">

@@ -18,18 +18,18 @@ export const useTasks = () => {
 
 	// Add new task
 	const addTask = useCallback(
-		(taskData: TaskFormData) => {
-			if (!taskData.description.trim()) {
+		(taskData: Partial<TaskFormData>) => {
+			if (!taskData.description || !taskData.description.trim()) {
 				throw new Error("Task description cannot be empty.");
 			}
 
 			const newTask: Task = {
 				id: uuidv4(),
-				description: taskData.description.trim(),
+				description: taskData.description!.trim(), // Use non-null assertion here
 				dueDate: taskData.dueDate || undefined,
 				status: "Pending",
-				priority: taskData.priority,
-				category: taskData.category,
+				priority: taskData.priority || "Medium",
+				category: taskData.category || "Personal",
 				createdAt: new Date().toISOString(),
 			};
 
