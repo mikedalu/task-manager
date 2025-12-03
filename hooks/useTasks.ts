@@ -6,7 +6,7 @@ import { filterTasks, sortTasks } from "@/utils/helpers";
 import { toast } from "react-hot-toast";
 
 export const useTasks = () => {
-	const { tasks, setTasks, isInitialized } = useLocalStorage();
+	const { value: tasks, setValue: setTasks, isInitialized } = useLocalStorage<Task[]>("tasks", []);
 
 	const [filters, setFilters] = useState<TaskFilters>({
 		status: "All",
@@ -106,4 +106,3 @@ export const useTasks = () => {
 		isInitialized,
 	};
 };
-

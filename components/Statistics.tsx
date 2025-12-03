@@ -11,7 +11,7 @@ interface StatisticsProps {
 
 export default function Statistics({ total, completed, pending, completionRate }: StatisticsProps) {
 	return (
-		<div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+		<div className="grid grid-cols-2 md:grid-cols-4 gap-4">
 			<div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-xl p-4 text-center border border-slate-200 dark:border-slate-700">
 				<div className="flex items-center justify-center text-2xl font-bold text-slate-900 dark:text-white">
 					<ListTodo className="w-6 h-6 mr-2" />

@@ -7,9 +7,10 @@ interface TaskListProps {
 	tasks: Task[];
 	onToggleStatus: (id: string) => void;
 	onDelete: (id: string) => void;
+	onEdit: (task: Task) => void;
 }
 
-export default function TaskList({ tasks, onToggleStatus, onDelete }: TaskListProps) {
+export default function TaskList({ tasks, onToggleStatus, onDelete, onEdit }: TaskListProps) {
 	if (tasks.length === 0) {
 		return (
 			<div className="text-center py-16 px-4 bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-xl border border-slate-200 dark:border-slate-700">
@@ -29,7 +30,13 @@ export default function TaskList({ tasks, onToggleStatus, onDelete }: TaskListPr
 	return (
 		<div className="space-y-4">
 			{tasks.map((task) => (
-				<TaskItem key={task.id} task={task} onToggleStatus={onToggleStatus} onDelete={onDelete} />
+				<TaskItem
+					key={task.id}
+					task={task}
+					onToggleStatus={onToggleStatus}
+					onDelete={onDelete}
+					onEdit={onEdit}
+				/>
 			))}
 		</div>
 	);

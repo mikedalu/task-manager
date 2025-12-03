@@ -2,15 +2,16 @@
 
 import { Task } from "@/types/task";
 import { getPriorityColor, getCategoryColor, formatDueDate } from "@/utils/helpers";
-import { Calendar, Check, Trash, Undo } from "lucide-react";
+import { Calendar, Check, Trash, Edit } from "lucide-react";
 
 interface TaskItemProps {
 	task: Task;
 	onToggleStatus: (id: string) => void;
 	onDelete: (id: string) => void;
+	onEdit: (task: Task) => void;
 }
 
-export default function TaskItem({ task, onToggleStatus, onDelete }: TaskItemProps) {
+export default function TaskItem({ task, onToggleStatus, onDelete, onEdit }: TaskItemProps) {
 	return (
 		<div className="group p-6 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-xl shadow-md hover:shadow-xl border border-slate-200 dark:border-slate-700 transition-all duration-200 hover:scale-[1.01]">
 			<div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
@@ -53,24 +54,19 @@ export default function TaskItem({ task, onToggleStatus, onDelete }: TaskItemPro
 				</div>
 
 				<div className="flex gap-2 flex-shrink-0">
+					{task.status === "Pending" && (
+						<button
+							onClick={() => onToggleStatus(task.id)}
+							className="flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white">
+							<Check className="w-4 h-4 mr-2" />
+							Complete
+						</button>
+					)}
 					<button
-						onClick={() => onToggleStatus(task.id)}
-						className={`flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg ${
-							task.status === "Pending"
-								? "bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white"
-								: "bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white"
-						}`}>
-						{task.status === "Pending" ? (
-							<>
-								<Check className="w-4 h-4 mr-2" />
-								Complete
-							</>
-						) : (
-							<>
-								<Undo className="w-4 h-4 mr-2" />
-								Undo
-							</>
-						)}
+						onClick={() => onEdit(task)}
+						className="flex items-center justify-center px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg text-sm font-medium transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg">
+						<Edit className="w-4 h-4 mr-2" />
+						Edit
 					</button>
 					<button
 						onClick={() => onDelete(task.id)}
@@ -83,3 +79,4 @@ export default function TaskItem({ task, onToggleStatus, onDelete }: TaskItemPro
 		</div>
 	);
 }
+
